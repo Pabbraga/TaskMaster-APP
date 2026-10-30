@@ -1,0 +1,53 @@
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-title size="large">Task Master</ion-title>
+  </ion-header>
+  <div class="container">
+    <ion-img class="logo" src="assets/img/logo-taskmaster.png"></ion-img>
+
+    <div class="login-form">
+      <h2>Login</h2>
+
+      <form class="login-form-fields" (ngSubmit)="onSubmit()">
+        <div class="form-field">
+          <label for="email-input">Email</label>
+          <ion-input
+            id="email-input"
+            type="email"
+            name="email"
+            shape="round"
+            [(ngModel)]="email"
+            required
+            placeholder="Digite seu e-mail"
+          ></ion-input>
+        </div>
+
+        <div class="form-field">
+          <label for="password-input">Senha</label>
+          <ion-input
+            id="password-input"
+            type="password"
+            name="senha"
+            shape="round"
+            [(ngModel)]="senha"
+            required
+            placeholder="Digite sua senha"
+          ></ion-input>
+        </div>
+
+        <div class="forgot-password">
+          <a routerLink="/login">Esqueci Minha Senha</a>
+        </div>
+
+        <div class="form-field buttons-field">
+          <ion-button type="submit"><p>Entrar</p></ion-button>
+          <ion-button routerLink="/cadastro" type="button"><p>Não Possuo Conta</p></ion-button>
+        </div>
+
+        @if (errorMessage) {
+          <small class="error-message">{{ errorMessage }}</small>
+        }
+      </form>
+    </div>
+  </div>
+</ion-content>
