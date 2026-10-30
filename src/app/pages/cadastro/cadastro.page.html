@@ -1,0 +1,79 @@
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-title size="large">Task Master</ion-title>
+  </ion-header>
+  <div class="container">
+    <ion-img class="logo" src="assets/img/logo-taskmaster.png"></ion-img>
+
+    <form class="cadastro-form" (ngSubmit)="onSubmit()" #cadastroForm="ngForm">
+      <h1>Cadastro</h1>
+
+      <div class="form-field">
+        <label for="apelido-input">Apelido</label>
+        <ion-input
+          id="apelido-input"
+          type="text"
+          name="apelido"
+          [(ngModel)]="apelido"
+          required
+          placeholder="Digite seu apelido"
+        ></ion-input>
+      </div>
+
+      <div class="form-field">
+        <label for="email-input">Email</label>
+        <ion-input
+          id="email-input"
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          email
+          placeholder="Digite seu e-mail"
+        ></ion-input>
+      </div>
+
+      <div class="form-field">
+        <label for="senha-input">Senha</label>
+        <ion-input
+          id="senha-input"
+          class="input"
+          type="password"
+          name="senha"
+          [(ngModel)]="senha"
+          required
+          placeholder="Digite sua senha"
+        ></ion-input>
+      </div>
+
+      <div class="form-field">
+        <label for="confirmar-senha-input">Repetir Senha</label>
+        <ion-input
+          id="confirmar-senha-input"
+          type="password"
+          name="confirmarSenha"
+          [(ngModel)]="confirmarSenha"
+          required
+          placeholder="Repita sua senha"
+        ></ion-input>
+      </div>
+
+      <div class="terms-row">
+        <ion-checkbox
+          id="aceite-termos"
+          name="aceitaTermos"
+          [(ngModel)]="aceitaTermos"
+          aria-label="Aceito os termos de uso"
+        ></ion-checkbox>
+        <label class="checkbox-label" for="aceite-termos">Li e aceito os <a routerLink="/login">Termos de Uso</a></label>
+      </div>
+
+      @if (errorMessage) {
+        <small class="error-message">{{ errorMessage }}</small>
+      }
+      <div class="form-actions">
+        <ion-button type="submit" expand="block">Cadastrar</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>
