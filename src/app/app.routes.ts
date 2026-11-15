@@ -10,6 +10,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/cadastro/cadastro.page').then((m) => m.CadastroPage),
   },
   {
+    path: 'redefinir-senha',
+    loadComponent: () =>
+      import('./pages/redefinir-senha/redefinir-senha.page').then((m) => m.RedefinirSenhaPage),
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',

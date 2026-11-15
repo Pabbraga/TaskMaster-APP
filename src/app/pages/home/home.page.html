@@ -1,0 +1,86 @@
+<ion-header class="profile-header">
+  <ion-toolbar>
+    <div class="profile" slot="start">
+      <div class="avatar" role="img" aria-label="Avatar padrão do usuário">
+        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+      </div>
+      <span class="user-name">{{ userName }}</span>
+    </div>
+    <ion-button class="logout-button" slot="end" fill="clear" routerLink="/login" aria-label="Sair da conta">
+      <img src="assets/img/btn-logout.png" alt="" />
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <main class="home-content">
+    <section class="progress-panel" aria-label="Progresso diário">
+      <div class="streak">
+        <h1>Sua Streak Atual</h1>
+        <strong>{{ streakDays }} Dias</strong>
+        <div class="streak-badge" aria-hidden="true">
+          <img src="assets/img/icone-insignia.png" alt="" />
+        </div>
+      </div>
+
+      <div class="daily-challenges" aria-label="Desafios diários">
+        @for (challenge of dailyChallenges; track challenge.title) {
+          <div class="daily-challenge">
+            <span>{{ challenge.title }}</span>
+            <ion-progress-bar
+              [value]="challenge.progress"
+              [attr.aria-label]="challenge.title + ': ' + (challenge.progress * 100) + '% concluído'"
+            ></ion-progress-bar>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="weekly-section" id="challenges" aria-labelledby="weekly-title">
+      <h2 id="weekly-title">Desafios Semanais</h2>
+      <div class="weekly-cards">
+        @for (challenge of weeklyChallenges; track challenge.title) {
+          <article class="weekly-card">
+            <span class="challenge-status" aria-hidden="true"></span>
+            <p>{{ challenge.title }}</p>
+            <span class="challenge-reward" [attr.aria-label]="challenge.reward + ' pontos de recompensa'">
+              {{ challenge.reward }}
+              <ion-icon
+                class="challenge-indicator"
+                name="star"
+                [class.completed]="isWeeklyChallengeCompleted(challenge)"
+                aria-hidden="true"
+              ></ion-icon>
+            </span>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="tasks-section" id="tasks" aria-labelledby="tasks-title">
+      <div class="section-heading">
+        <h2 id="tasks-title">Tarefas Para Hoje</h2>
+      </div>
+      <div class="task-list">
+        @for (task of tasks; track task.title) {
+          <div class="task-row">{{ task.title }}</div>
+        }
+      </div>
+    </section>
+
+  </main>
+</ion-content>
+
+<ion-footer class="bottom-navigation">
+  <nav aria-label="Navegação principal">
+    <a routerLink="/home" aria-label="Início" aria-current="page">
+      <img src="assets/img/btn-nova-tarefa.png" alt="" />
+    </a>
+    <a href="#challenges" aria-label="Desafios semanais">
+      <img src="assets/img/btn-ver-tarefa.png" alt="" />
+    </a>
+    <a href="#tasks" aria-label="Tarefas para hoje">
+      <img src="assets/img/btn-trofeu.png" alt="" />
+    </a>
+  </nav>
+</ion-footer>
