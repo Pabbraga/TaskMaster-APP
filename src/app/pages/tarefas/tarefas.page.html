@@ -1,0 +1,71 @@
+<ion-header class="profile-header">
+  <ion-toolbar>
+    <div class="profile" slot="start">
+      <div class="avatar" role="img" aria-label="Avatar padrão do usuário">
+        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+      </div>
+      <span class="user-name">{{ userName }}</span>
+    </div>
+    <ion-button class="home-button" slot="end" fill="clear" routerLink="/home" aria-label="Ir para início">
+      <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <main class="tasks-page">
+    <div class="search-and-filter">
+      <label class="task-search">
+        <ion-input
+          type="search"
+          [(ngModel)]="searchTerm"
+          name="taskSearch"
+          placeholder="Pesquisar"
+          aria-label="Pesquisar tarefas por título"
+          clearInput="true"
+        ></ion-input>
+        <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+      </label>
+
+    </div>
+
+    <section class="task-grid" aria-label="Lista de tarefas">
+      @for (task of filteredTasks; track task.id) {
+        <article class="task-card" [class.details-open]="selectedTaskId === task.id">
+          <button
+            class="task-card-button"
+            type="button"
+            [attr.aria-expanded]="selectedTaskId === task.id"
+            [attr.aria-label]="'Ver detalhes de ' + task.title"
+            (click)="toggleDetails(task.id)"
+          >
+            <strong class="task-title">{{ task.title }}</strong>
+            <span class="task-description">{{ task.description }}</span>
+            @if (selectedTaskId === task.id) {
+              <span class="task-meta">
+                <span class="task-deadline">Prazo: {{ formatDeadline(task.deadline) }}</span>
+                <span class="task-status" [attr.data-status]="task.status">{{ task.status }}</span>
+              </span>
+            }
+          </button>
+        </article>
+      } @empty {
+        <p class="empty-state">Nenhuma tarefa encontrada.</p>
+      }
+    </section>
+  </main>
+</ion-content>
+
+<ion-footer class="bottom-navigation">
+  <nav aria-label="Navegação principal">
+    <button type="button" disabled aria-label="Adicionar tarefa, disponível futuramente">
+      <img src="assets/img/btn-nova-tarefa.png" alt="" />
+    </button>
+    <a routerLink="/tarefas" aria-label="Visualizar tarefas" aria-current="page">
+      <img src="assets/img/btn-ver-tarefa.png" alt="" />
+    </a>
+    <a routerLink="/home" aria-label="Início">
+      <img src="assets/img/btn-trofeu.png" alt="" />
+    </a>
+  </nav>
+</ion-footer>
