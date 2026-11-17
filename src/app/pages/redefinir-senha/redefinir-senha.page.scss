@@ -1,0 +1,149 @@
+ion-content {
+  --background: var(--page-bg);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 0 1rem 2rem;
+}
+
+.page-title,
+.reset-panel h2,
+.form-field label,
+.submit-button,
+.back-button,
+.back-to-login {
+  font-family: CrimsonText, serif;
+  font-weight: 400;
+  color: var(--text);
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000,
+    -2px 0 0 #000,
+    2px 0 0 #000,
+    0 -2px 0 #000,
+    0 2px 0 #000;
+}
+
+.page-title {
+  margin: 0.3rem 0 0;
+  font-size: 3em;
+  text-align: center;
+}
+
+.logo {
+  width: 11rem;
+  height: 11rem;
+  margin: 0 auto 1rem;
+}
+
+.reset-panel {
+  display: flex;
+  width: min(100%, 28rem);
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+  padding: 0.25rem 0.75rem 1rem;
+  border-radius: 0.8rem;
+  background: var(--panel-bg);
+}
+
+.reset-panel h2 {
+  margin: 0.2rem 0 1rem;
+  font-size: 3.2rem;
+  text-align: center;
+}
+
+.reset-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.email-field {
+  margin-top: 0;
+}
+
+.form-field label {
+  display: block;
+  margin: 0 0 0.35rem 0.35rem;
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+ion-input {
+  --background: var(--field-bg);
+  --color: #000;
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  --padding-top: 0.7rem;
+  --padding-bottom: 0.7rem;
+  --placeholder-color: rgba(0, 0, 0, 0.6);
+  border: 3px solid var(--dark);
+  border-radius: 1.2em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  --background: var(--button-bg);
+  --color: var(--text);
+  --border-color: var(--dark);
+  --border-style: solid;
+  --border-width: 2px;
+  --border-radius: 1rem;
+  --box-shadow: none;
+  height: 3rem;
+  margin: 0.5rem 0 0;
+  font-size: 1em;
+}
+
+.send-code-button {
+  min-width: 13.5rem;
+}
+
+.reset-password-button {
+  min-width: 15rem;
+  margin-top: 0.5rem;
+}
+
+.feedback {
+  width: 100%;
+  padding: 0 0.65rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.error-message,
+.status-message {
+  margin: 0.8rem 0 0;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.back-button,
+.back-to-login {
+  align-self: center;
+  margin-top: 0.9rem;
+  border: 0;
+  background: transparent;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.back-to-login {
+  padding-top: 1rem;
+}

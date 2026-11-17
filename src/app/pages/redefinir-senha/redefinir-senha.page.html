@@ -1,0 +1,96 @@
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <h1 class="page-title">Task Master</h1>
+    <ion-img class="logo" src="assets/img/logo-taskmaster.png" alt="Task Master"></ion-img>
+
+    <section class="reset-panel" aria-labelledby="reset-title">
+      <h2 id="reset-title">Redefinir Senha</h2>
+
+      @if (step === 'email') {
+        <form (ngSubmit)="requestCode()" class="reset-form">
+          <div class="form-field email-field">
+            <label for="reset-email">Email</label>
+            <ion-input
+              id="reset-email"
+              name="email"
+              type="email"
+              shape="round"
+              inputmode="email"
+              autocomplete="email"
+              [(ngModel)]="email"
+              required
+              aria-describedby="reset-feedback"
+            ></ion-input>
+          </div>
+
+          <ion-button class="submit-button send-code-button" type="submit">
+            Enviar Código
+          </ion-button>
+        </form>
+      } @else {
+        <form (ngSubmit)="resetPassword()" class="reset-form verification-form">
+          <div class="form-field">
+            <label for="verification-code">Código</label>
+            <ion-input
+              id="verification-code"
+              name="codigo"
+              type="text"
+              shape="round"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+              [(ngModel)]="codigo"
+              required
+              aria-describedby="reset-feedback"
+            ></ion-input>
+          </div>
+
+          <div class="form-field">
+            <label for="new-password">Senha</label>
+            <ion-input
+              id="new-password"
+              name="novaSenha"
+              type="password"
+              shape="round"
+              autocomplete="new-password"
+              [(ngModel)]="novaSenha"
+              required
+              aria-describedby="reset-feedback"
+            ></ion-input>
+          </div>
+
+          <div class="form-field">
+            <label for="confirm-password">Repetir Senha</label>
+            <ion-input
+              id="confirm-password"
+              name="confirmarSenha"
+              type="password"
+              shape="round"
+              autocomplete="new-password"
+              [(ngModel)]="confirmarSenha"
+              required
+              aria-describedby="reset-feedback"
+            ></ion-input>
+          </div>
+
+          <ion-button class="submit-button reset-password-button" type="submit">
+            Redefinir Senha
+          </ion-button>
+        </form>
+      }
+
+      <div id="reset-feedback" class="feedback" aria-live="polite">
+        @if (errorMessage) {
+          <p class="error-message">{{ errorMessage }}</p>
+        }
+        @if (statusMessage) {
+          <p class="status-message">{{ statusMessage }}</p>
+        }
+      </div>
+
+      @if (step === 'code') {
+        <button class="back-button" type="button" (click)="backToEmail()">Alterar e-mail</button>
+      }
+      <a class="back-to-login" routerLink="/login">Voltar ao login</a>
+    </section>
+  </div>
+</ion-content>
