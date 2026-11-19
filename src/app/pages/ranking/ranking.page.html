@@ -1,0 +1,89 @@
+<ion-header class="profile-header">
+  <ion-toolbar>
+    <div class="profile" slot="start">
+      <div class="avatar" role="img" aria-label="Avatar padrão do usuário">
+        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+      </div>
+      <span class="user-name">{{ userName }}</span>
+    </div>
+    <a class="home-button" slot="end" routerLink="/home" aria-label="Voltar para o início">
+      <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+    </a>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <main class="ranking-page">
+    <div class="period-tabs" role="tablist" aria-label="Período do ranking">
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="period === 'monthly'"
+        [class.active]="period === 'monthly'"
+        (click)="setPeriod('monthly')"
+      >
+        Ranking Mensal
+      </button>
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="period === 'weekly'"
+        [class.active]="period === 'weekly'"
+        (click)="setPeriod('weekly')"
+      >
+        Ranking Semanal
+      </button>
+    </div>
+
+    <section class="user-ranking" aria-labelledby="user-ranking-title" aria-live="polite">
+      <div class="table-heading" id="user-ranking-title">
+        <span>Rank</span>
+        <span>Meu Ranking</span>
+        <span>Pontos</span>
+      </div>
+      <div class="user-ranking-row">
+        <span class="rank-cell">{{ currentUserScore.position }}</span>
+        <span class="player-cell">
+          <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          {{ currentUserScore.name }}
+        </span>
+        <span class="points-cell">{{ currentUserScore.points }}</span>
+      </div>
+    </section>
+
+    <section class="global-ranking" aria-labelledby="global-ranking-title" aria-live="polite">
+      <div class="table-heading" id="global-ranking-title">
+        <span>Rank</span>
+        <span>{{ period === 'monthly' ? 'Ranking Mensal' : 'Ranking Semanal' }}</span>
+        <span>Pontos</span>
+      </div>
+
+      <ol class="ranking-list">
+        @for (player of currentRanking; track player.position) {
+          <li class="ranking-row" [class.top-three]="player.position <= 3">
+            <span class="rank-cell">{{ player.position }}</span>
+            <span class="player-cell">
+              <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+              {{ player.name }}
+            </span>
+            <span class="points-cell">{{ player.points }}</span>
+          </li>
+        }
+      </ol>
+    </section>
+  </main>
+</ion-content>
+
+<ion-footer class="bottom-navigation">
+  <nav aria-label="Navegação principal">
+    <button type="button" disabled aria-label="Criar tarefa, disponível futuramente">
+      <img src="assets/img/btn-nova-tarefa.png" alt="" />
+    </button>
+    <a routerLink="/home" fragment="tasks" aria-label="Tarefas para hoje">
+      <img src="assets/img/btn-ver-tarefa.png" alt="" />
+    </a>
+    <a routerLink="/ranking" aria-label="Ranking" aria-current="page">
+      <img src="assets/img/btn-trofeu.png" alt="" />
+    </a>
+  </nav>
+</ion-footer>
